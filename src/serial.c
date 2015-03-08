@@ -1,6 +1,6 @@
 #include "../inc/serial.h"
 
-void serial_init(void);
+void serial_init(void)
 {
 	/* set baud rate high byte */
 	UBRR0H = (unsigned char) (BAUD_SPECIFIC >> 8);
@@ -25,7 +25,7 @@ void serial_tx(unsigned char byte)
 	/* wait until tx ready bit is set */
 	while(!(UCSR0A & (1 << UDRE0)));
 	/* send data */
-	udr0 = byte;
+	UDR0 = byte;
 }
 
 void serial_print(char *txt)
